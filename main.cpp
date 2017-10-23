@@ -2,14 +2,21 @@
 #include <stdio.h>
 
 #include <opencv2/opencv.hpp>
-/*
-#include <opencv2/core/core.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/calib3d/calib3d.hpp>
-*/
 
 #include <apriltag/apriltag.h>
 #include <apriltag/tag36h11.h>
+
+///*
+#include <lua5.2/lua.h>
+#include <lua5.2/lauxlib.h>
+#include <lua5.2/lualib.h>
+//*/
+/*
+#include <lua.h>
+#include <lauxlib.h>
+#include <lualib.h>
+*/
+
 
 using namespace cv;
 
@@ -27,7 +34,13 @@ int main(int n_arg_count, char* ppch_args[])
 	int x_temp,y_temp;
 	char c;
 
-	////////// apriltag initial ////
+	////////// Lua initial  ////////////////////////////////////////////////////////
+	lua_State *L = luaL_newstate();
+	luaL_openlibs(L);
+	if ((luaL_loadfile(L,"../func.lua")) || (lua_pcall(L,0,0,0)))
+		{printf("open lua file fail : %s\n",lua_tostring(L,-1));return -1;}
+
+	////////// apriltag initial ////////////////////////////////////////////////////
 				// these might be needed
 				//		m_cCameraMatrix(c_camera_matrix),
 				//		m_cDistortionParameters(c_distortion_parameters) {
@@ -42,12 +55,13 @@ int main(int n_arg_count, char* ppch_args[])
 	m_psTagDetector->refine_edges = 1;
 	m_psTagDetector->refine_decode = 0;
 	m_psTagDetector->refine_pose = 0;
-	/* create the tag family */
+		/* create the tag family */
 	m_psTagFamily = tag36h11_create();
 	m_psTagFamily->black_border = 1;
 	apriltag_detector_add_family(m_psTagDetector, m_psTagFamily);
 
-	////////// loop image initail /////////
+
+	////////// loop image initail //////////////////////////////////////////////////
 	char fileName[30];
 	char fileNameBase[20] = "../data/output_";
 	//char fileNameBase[20] = "data/output_";
@@ -59,7 +73,7 @@ int main(int n_arg_count, char* ppch_args[])
 	moveWindow("output",100,100);
 	resizeWindow("output",1000,700);
 
-	/////////// main loop //////////////////////////////
+	/////////// main loop //////////////////////////////////////////////////////////
 	for (i = 0; i < 197; i++)
 	{
 		///////// Open Image  //////////////////////////
@@ -93,6 +107,40 @@ int main(int n_arg_count, char* ppch_args[])
 		//now psDetections is an array of detected tags
 
 		/////////  Trick Start  ///////////////////////
+
+		/////////  Lua ///////////////////
+			/*
+			   		for every frame, build a taglist, which is a table, to lua
+			   			taglist
+						{
+							timestamp = xxx
+							n = <a number> the number of tags
+							1 = <a table> which is a tag
+								{
+									center = {x = **, y = **}
+									corner = <a table>
+									{
+										1 = {x = **, y = **}
+										2
+										3
+										4
+									}
+								}
+							2
+							3
+							4
+							...
+						}
+			 */
+		lua_getglobal(L,"func"); // stack 1 is the function
+		lua_newtable(L);		 // stack 2 is the table (without a name)
+		lua_pushstring(L,"timestamp");	// stack 3 is the index of timestamp
+		lua_pushstring(L,"tobefilled");	// stack 4 is the value of timestamp
+		lua_settable(L,2);
+		lua_pushstring(L,"n");	// stack 3 is the index of n
+		lua_pushnumber(L,zarray_size(psDetections));
+		lua_settable(L,2);
+
 		// go through all the tags
 		printf("tags: %d\n: ",zarray_size(psDetections));
 		for (j = 0; j < zarray_size(psDetections); j++)
@@ -124,13 +172,48 @@ int main(int n_arg_count, char* ppch_args[])
 				y_temp = psDetection->p[k][0];
 				drawCross(imageRGB,x_temp,y_temp,"blue");
 			}
+
+			/////////// Lua ////////////////////////////////////
+			lua_pushnumber(L,j+1);		//Stack 3 is the index of this tag
+			lua_newtable(L);		 	// stack 4 is the table of this tag
+				lua_pushstring(L,"center");	// stack 5 is the index of n
+				lua_newtable(L);		 	// stack 6 is the table of this center
+					lua_pushstring(L,"x");	// stack 7 is the index of x
+					lua_pushnumber(L,psDetection->c[1]);//Stack 8 is the value of x
+				  lua_settable(L,6);
+
+					lua_pushstring(L,"y");	// stack 7 is the index of y
+					lua_pushnumber(L,psDetection->c[0]);//Stack 8 is the index of y
+				  lua_settable(L,6);
+			  lua_settable(L,4);
+
+				lua_pushstring(L,"corners");	// stack 5 is index of corners
+				lua_newtable(L);				// stack 6 is the table of the corners
+					for (k = 0; k < 4; k++)
+					{
+						lua_pushnumber(L,k+1);	// stack 7 is the index of corner 1234
+						lua_newtable(L);		// stack 8 is the table of corner 1234
+							lua_pushstring(L,"x");	// stack 9 is the index of x
+							lua_pushnumber(L,psDetection->p[k][1]);//Stack 10 is the value of x
+				  		  lua_settable(L,8);
+							lua_pushstring(L,"y");	// stack 9 is the index of x
+							lua_pushnumber(L,psDetection->p[k][0]);//Stack 10 is the value of x
+				  		  lua_settable(L,8);
+				  	  lua_settable(L,6);
+					}
+			  lua_settable(L,4);	// add corners to table tag
+			lua_settable(L,2);	// add tag to root table
 		}
+
+		if (lua_pcall(L,1,0,0) != 0)
+			{printf("call func fail %s\n",lua_tostring(L,-1)); return -1;}
 
 		imshow("output", imageRGB);
 		c = waitKey(30);
 		//c = waitKey(0);
 	}
 
+	lua_close(L);
 
 	return 0;
 }

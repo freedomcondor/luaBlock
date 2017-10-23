@@ -5,6 +5,12 @@ project( luaBlock )
 # OpenCV
 #============================================================================
 find_package( OpenCV REQUIRED )
+#============================================================================
+# OpenCV
+#============================================================================
+find_package( Lua REQUIRED )
+#${LUA_INCLUDE_DIR}
+#${LUA_LIBRARIES}
 
 #=============================================================================
 # - Find the AprilTag Library
@@ -39,6 +45,6 @@ IF (NOT AprilTag_FOUND)
 	MESSAGE (WARNING "The AprilTag Library has not been found!")
 ENDIF (NOT AprilTag_FOUND)
 
-include_directories( ${OpenCV_INCLUDE_DIRS} ${AprilTag_INCLUDE_DIR})
+include_directories( ${OpenCV_INCLUDE_DIRS} ${AprilTag_INCLUDE_DIR} ${LUA_INCLUDE_DIR})
 add_executable( luaBlock main.cpp )
-target_link_libraries( luaBlock ${OpenCV_LIBS} ${AprilTag_LIB})
+target_link_libraries( luaBlock ${OpenCV_LIBS} ${AprilTag_LIB} ${LUA_LIBRARIES})

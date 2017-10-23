@@ -3,3 +3,7 @@
 
 CMakeFiles/luaBlock.dir/main.cpp.o
  /home/harry/luaBlock/main.cpp
+ /usr/include/lua5.2/lauxlib.h
+ /usr/include/lua5.2/lua.h
+ /usr/include/lua5.2/luaconf.h
+ /usr/include/lua5.2/lualib.h

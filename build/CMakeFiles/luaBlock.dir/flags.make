@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/opencv -I/usr/local/include/apriltag 
+CXX_INCLUDES = -I/usr/include/opencv -I/usr/local/include/apriltag -I/usr/include/lua5.2 
 
