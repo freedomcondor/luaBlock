@@ -23,6 +23,7 @@ taglist
 --]]
 
 function func(a)
+	--[[
 	print(a.timestamp)
 	print(a.n)
 	for i = 1, a.n do
@@ -35,4 +36,9 @@ function func(a)
 			print("\t\ty",a[i].corners[j].y)
 		end
 	end
+	--]]
+
+	structure = {n = a.n}
+	structure[1] = {x = 0,y = 0,z = 5}
+	return structure
 end

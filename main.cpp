@@ -17,7 +17,7 @@
 #include <lualib.h>
 */
 
-
+using namespace std;
 using namespace cv;
 
 // conver n into something like "00001"
@@ -27,6 +27,8 @@ char *numberToString5(int n, char str[]);
 //int setColor(uchar pix[],int R,int G, int B);
 int setColor(cv::Vec<unsigned char, 3> &pix,int R,int G, int B);
 int drawCross(Mat img, int x, int y, const char color[]);
+
+// find ../data/*.png | ./luaBlock -
 
 int main(int n_arg_count, char* ppch_args[])
 {
@@ -61,19 +63,22 @@ int main(int n_arg_count, char* ppch_args[])
 	apriltag_detector_add_family(m_psTagDetector, m_psTagFamily);
 
 
-	////////// loop image initail //////////////////////////////////////////////////
+	////////// loop filename initail //////////////////////////////////////////////////
 	char fileName[30];
 	char fileNameBase[20] = "../data/output_";
 	//char fileNameBase[20] = "data/output_";
 	char fileExt[10] = ".png";
 	char fileNumber[5];
+	string strFileName;
 
+	///////// image and window initial ////////////////
 	Mat imageRGB,image;
 	namedWindow("output",WINDOW_NORMAL);
 	moveWindow("output",100,100);
 	resizeWindow("output",1000,700);
 
 	/////////// main loop //////////////////////////////////////////////////////////
+	/*
 	for (i = 0; i < 197; i++)
 	{
 		///////// Open Image  //////////////////////////
@@ -83,11 +88,25 @@ int main(int n_arg_count, char* ppch_args[])
 		strcpy(fileName,fileNameBase);
 		strcat(fileName,fileNumber);
 		strcat(fileName,fileExt);
-		printf("%d, %s : ",i, fileName);
+		
+						printf("%d, %s : \n",i, fileName);
+
 		// open image
 		imageRGB = imread( fileName, 1 );
+	*/
+	if(n_arg_count > 1 && ppch_args[1][0] == '-')
+	for (;;)
+	{
+		cin >> strFileName;
+		if(std::cin.good())
+			imageRGB = cv::imread(strFileName.c_str(), 1);
+		else
+			break;
+
 		//printf("channels,%d ",image.channels());
-		printf("row and col,%d %d ",imageRGB.rows,imageRGB.cols);
+
+						//printf("row and col,%d %d ",imageRGB.rows,imageRGB.cols);
+
 		if ( !imageRGB.data ) { printf("Can't open image %s \n",fileName); return -1; }
 		cvtColor(imageRGB,image,CV_BGR2GRAY);
 
@@ -132,6 +151,7 @@ int main(int n_arg_count, char* ppch_args[])
 							...
 						}
 			 */
+		lua_settop(L,0);
 		lua_getglobal(L,"func"); // stack 1 is the function
 		lua_newtable(L);		 // stack 2 is the table (without a name)
 		lua_pushstring(L,"timestamp");	// stack 3 is the index of timestamp
@@ -142,7 +162,9 @@ int main(int n_arg_count, char* ppch_args[])
 		lua_settable(L,2);
 
 		// go through all the tags
-		printf("tags: %d\n: ",zarray_size(psDetections));
+
+							//printf("tags: %d\n: ",zarray_size(psDetections));
+
 		for (j = 0; j < zarray_size(psDetections); j++)
 		{
 			apriltag_detection_t *psDetection;
@@ -158,7 +180,6 @@ int main(int n_arg_count, char* ppch_args[])
 															////////////////////
 
 			////  output and draw
-			printf("\tid = %d\n",psDetection->id);
 			////////// draw center /////////
 			x_temp = psDetection->c[1];
 			y_temp = psDetection->c[0];
@@ -173,9 +194,12 @@ int main(int n_arg_count, char* ppch_args[])
 				drawCross(imageRGB,x_temp,y_temp,"blue");
 			}
 
-			/////////// Lua ////////////////////////////////////
+			/////////// Lua build table into stack ////////////////////////////
 			lua_pushnumber(L,j+1);		//Stack 3 is the index of this tag
 			lua_newtable(L);		 	// stack 4 is the table of this tag
+				lua_pushstring(L,"id");		// stack 5 is the index of n
+				lua_pushnumber(L,psDetection->id);		 	// stack 6 is the table of this center
+			  lua_settable(L,4);
 				lua_pushstring(L,"center");	// stack 5 is the index of n
 				lua_newtable(L);		 	// stack 6 is the table of this center
 					lua_pushstring(L,"x");	// stack 7 is the index of x
@@ -205,13 +229,24 @@ int main(int n_arg_count, char* ppch_args[])
 			lua_settable(L,2);	// add tag to root table
 		}
 
-		if (lua_pcall(L,1,0,0) != 0)
+		//////////////// call lua function  /////////////////////////////////
+		if (lua_pcall(L,1,1,0) != 0)
 			{printf("call func fail %s\n",lua_tostring(L,-1)); return -1;}
 
+		/////////////// lua take lua function result ///////////////////////
+			// the result should be the structure of the blocks
+		if (lua_istable(L,1)) printf("back is table\n");	// stack 1
+		lua_pushstring(L,"n");		//stack 2
+		lua_gettable(L,1);			
+		printf("number: %lf\n",luaL_checknumber(L,2));	//stack 2 now is the number n
+		//printf("stack: %d\n",lua_gettop(L));
+		lua_pop(L,2);	// clear 2 last in stack
+
+		////////////// show image and next frame //////////////////
 		imshow("output", imageRGB);
 		c = waitKey(30);
 		//c = waitKey(0);
-	}
+	}	// end for
 
 	lua_close(L);
 
