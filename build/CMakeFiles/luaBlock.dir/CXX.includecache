@@ -9,7 +9,11 @@
 /home/harry/luaBlock/main.cpp
 stdlib.h
 -
+iostream
+-
 stdio.h
+-
+string.h
 -
 opencv2/opencv.hpp
 -

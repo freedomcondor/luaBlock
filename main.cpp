@@ -1,5 +1,7 @@
 #include <stdlib.h>
+#include <iostream>
 #include <stdio.h>
+#include <string.h>
 
 #include <opencv2/opencv.hpp>
 
@@ -70,6 +72,10 @@ int main(int n_arg_count, char* ppch_args[])
 	char fileExt[10] = ".png";
 	char fileNumber[5];
 	string strFileName;
+	string strFileSuffix("output_");
+	std::string strFileExtension(".png");
+	int nTimestamp;
+
 
 	///////// image and window initial ////////////////
 	Mat imageRGB,image;
@@ -102,6 +108,16 @@ int main(int n_arg_count, char* ppch_args[])
 			imageRGB = cv::imread(strFileName.c_str(), 1);
 		else
 			break;
+
+		string::size_type unPosStart = strFileName.find(strFileSuffix) + strFileSuffix.size();
+		string::size_type unPosEnd = strFileName.find(strFileExtension);
+		if(unPosStart == std::string::npos || unPosEnd == std::string::npos) {
+			std::cerr << "could not find suffix/extension in file name: "<< strFileName << std::endl;
+			continue;
+		}
+		string strTimestamp = strFileName.substr(unPosStart, unPosEnd - unPosStart);
+		//nTimestamp = std::stoi(strTimestamp);
+		//printf("%d\n",nTimestamp);
 
 		//printf("channels,%d ",image.channels());
 
