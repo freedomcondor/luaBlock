@@ -103,6 +103,7 @@ int main(int n_arg_count, char* ppch_args[])
 	if(n_arg_count > 1 && ppch_args[1][0] == '-')
 	for (;;)
 	{
+		////////////  to have the timestamp  ////////////////////////////////
 		cin >> strFileName;
 		if(std::cin.good())
 			imageRGB = cv::imread(strFileName.c_str(), 1);
@@ -200,14 +201,16 @@ int main(int n_arg_count, char* ppch_args[])
 			x_temp = psDetection->c[1];
 			y_temp = psDetection->c[0];
 			//printf("%d %d\n",x_temp, y_temp);
-			drawCross(imageRGB,x_temp,y_temp,"green");
+			//drawCross(imageRGB,x_temp,y_temp,"green");
+			drawCross(imageRGB,x_temp,y_temp,"red");
 
 			////////// draw corners /////////
 			for (k = 0; k < 4; k++)
 			{
 				x_temp = psDetection->p[k][1];
 				y_temp = psDetection->p[k][0];
-				drawCross(imageRGB,x_temp,y_temp,"blue");
+				//drawCross(imageRGB,x_temp,y_temp,"blue");
+				drawCross(imageRGB,x_temp,y_temp,"red");
 			}
 
 			/////////// Lua build table into stack ////////////////////////////
