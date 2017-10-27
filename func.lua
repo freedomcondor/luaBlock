@@ -22,7 +22,10 @@ taglist
 }
 --]]
 
-function func(a)
+package.path = package.path ..';..//?.lua'
+require("calcTagPos")
+
+function func(tagList)
 	--[[
 	print(a.timestamp)
 	print(a.n)
@@ -38,7 +41,22 @@ function func(a)
 	end
 	--]]
 
-	structure = {n = a.n}
-	structure[1] = {x = 0,y = 0,z = 5}
-	return structure
+	print("tagList got:",tagList.n,"tags")
+	pos = {n = tagList.n}
+	for i = 1, tagList.n do
+		print("\tfor the",i,"tag")
+
+		pos[i] = calTagPos(tagList[i])
+	end
+
+	--[[
+	print(pos.n)
+	if pos.n ~= 0 then
+		print(pos[1].x)
+		print(pos[1].y)
+		print(pos[1].z)
+	end
+	--]]
+
+	return pos
 end

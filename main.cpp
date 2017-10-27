@@ -41,6 +41,7 @@ int main(int n_arg_count, char* ppch_args[])
 	////////// Lua initial  ////////////////////////////////////////////////////////
 	lua_State *L = luaL_newstate();
 	luaL_openlibs(L);
+	//if ((luaL_loadfile(L,"../func.lua")) || (lua_pcall(L,0,0,0)))
 	if ((luaL_loadfile(L,"../func.lua")) || (lua_pcall(L,0,0,0)))
 		{printf("open lua file fail : %s\n",lua_tostring(L,-1));return -1;}
 
@@ -254,12 +255,15 @@ int main(int n_arg_count, char* ppch_args[])
 
 		/////////////// lua take lua function result ///////////////////////
 			// the result should be the structure of the blocks
-		if (lua_istable(L,1)) printf("back is table\n");	// stack 1
-		lua_pushstring(L,"n");		//stack 2
-		lua_gettable(L,1);			
-		printf("number: %lf\n",luaL_checknumber(L,2));	//stack 2 now is the number n
-		//printf("stack: %d\n",lua_gettop(L));
-		lua_pop(L,2);	// clear 2 last in stack
+		if (lua_istable(L,1))
+		{
+			//printf("back is table\n");	// stack 1
+			lua_pushstring(L,"n");		//stack 2
+			lua_gettable(L,1);			
+			//printf("number: %lf\n",luaL_checknumber(L,2));	//stack 2 now is the number n
+			//printf("stack: %d\n",lua_gettop(L));
+			lua_pop(L,2);	// clear 2 last in stack
+		}
 
 		////////////// show image and next frame //////////////////
 		imshow("output", imageRGB);
