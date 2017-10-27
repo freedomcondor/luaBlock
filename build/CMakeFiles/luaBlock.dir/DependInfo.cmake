@@ -4,7 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/harry/luaBlock/main.cpp" "/home/harry/luaBlock/build/CMakeFiles/luaBlock.dir/main.cpp.o"
+  "/home/harry/luaBlock/debug_opengl.cpp" "/home/harry/luaBlock/build/CMakeFiles/luaBlock.dir/debug_opengl.cpp.o"
+  "/home/harry/luaBlock/function_opengl.cpp" "/home/harry/luaBlock/build/CMakeFiles/luaBlock.dir/function_opengl.cpp.o"
+  "/home/harry/luaBlock/testbench.cpp" "/home/harry/luaBlock/build/CMakeFiles/luaBlock.dir/testbench.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -12,6 +12,13 @@ find_package( Lua REQUIRED )
 #${LUA_INCLUDE_DIR}
 #${LUA_LIBRARIES}
 
+find_package(OpenGL REQUIRED)
+#${OPENGL_INCLUDE_DIRS}
+#${OPENGL_LIBRARIES}
+find_package(GLUT REQUIRED)
+#${GLUT_INCLUDE_DIRS}
+#${GLUT_LIBRARIES}
+
 #=============================================================================
 # - Find the AprilTag Library
 #=============================================================================
@@ -45,6 +52,21 @@ IF (NOT AprilTag_FOUND)
 	MESSAGE (WARNING "The AprilTag Library has not been found!")
 ENDIF (NOT AprilTag_FOUND)
 
-include_directories( ${OpenCV_INCLUDE_DIRS} ${AprilTag_INCLUDE_DIR} ${LUA_INCLUDE_DIR})
-add_executable( luaBlock main.cpp )
-target_link_libraries( luaBlock ${OpenCV_LIBS} ${AprilTag_LIB} ${LUA_LIBRARIES})
+include_directories( 	${OpenCV_INCLUDE_DIRS} 
+						${AprilTag_INCLUDE_DIR} 
+						${LUA_INCLUDE_DIR}
+						${OPENGL_INCLUDE_DIRS}
+						${GLUT_INCLUDE_DIRS}
+					)
+#add_executable( luaBlock main.cpp )
+add_executable( luaBlock 
+					debug_opengl.cpp 
+					function_opengl.cpp
+					testbench.cpp
+		)
+target_link_libraries( luaBlock ${OpenCV_LIBS} 
+								${AprilTag_LIB} 
+								${LUA_LIBRARIES}
+								${OPENGL_LIBRARIES}
+								${GLUT_LIBRARIES}
+					)

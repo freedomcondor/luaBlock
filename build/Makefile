@@ -123,32 +123,86 @@ luaBlock/fast:
 	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/build
 .PHONY : luaBlock/fast
 
-main.o: main.cpp.o
+debug_opengl.o: debug_opengl.cpp.o
 
-.PHONY : main.o
+.PHONY : debug_opengl.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/main.cpp.o
-.PHONY : main.cpp.o
+debug_opengl.cpp.o:
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/debug_opengl.cpp.o
+.PHONY : debug_opengl.cpp.o
 
-main.i: main.cpp.i
+debug_opengl.i: debug_opengl.cpp.i
 
-.PHONY : main.i
+.PHONY : debug_opengl.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/main.cpp.i
-.PHONY : main.cpp.i
+debug_opengl.cpp.i:
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/debug_opengl.cpp.i
+.PHONY : debug_opengl.cpp.i
 
-main.s: main.cpp.s
+debug_opengl.s: debug_opengl.cpp.s
 
-.PHONY : main.s
+.PHONY : debug_opengl.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/main.cpp.s
-.PHONY : main.cpp.s
+debug_opengl.cpp.s:
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/debug_opengl.cpp.s
+.PHONY : debug_opengl.cpp.s
+
+function_opengl.o: function_opengl.cpp.o
+
+.PHONY : function_opengl.o
+
+# target to build an object file
+function_opengl.cpp.o:
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/function_opengl.cpp.o
+.PHONY : function_opengl.cpp.o
+
+function_opengl.i: function_opengl.cpp.i
+
+.PHONY : function_opengl.i
+
+# target to preprocess a source file
+function_opengl.cpp.i:
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/function_opengl.cpp.i
+.PHONY : function_opengl.cpp.i
+
+function_opengl.s: function_opengl.cpp.s
+
+.PHONY : function_opengl.s
+
+# target to generate assembly for a file
+function_opengl.cpp.s:
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/function_opengl.cpp.s
+.PHONY : function_opengl.cpp.s
+
+testbench.o: testbench.cpp.o
+
+.PHONY : testbench.o
+
+# target to build an object file
+testbench.cpp.o:
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/testbench.cpp.o
+.PHONY : testbench.cpp.o
+
+testbench.i: testbench.cpp.i
+
+.PHONY : testbench.i
+
+# target to preprocess a source file
+testbench.cpp.i:
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/testbench.cpp.i
+.PHONY : testbench.cpp.i
+
+testbench.s: testbench.cpp.s
+
+.PHONY : testbench.s
+
+# target to generate assembly for a file
+testbench.cpp.s:
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/testbench.cpp.s
+.PHONY : testbench.cpp.s
 
 # Help Target
 help:
@@ -159,9 +213,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... luaBlock"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... debug_opengl.o"
+	@echo "... debug_opengl.i"
+	@echo "... debug_opengl.s"
+	@echo "... function_opengl.o"
+	@echo "... function_opengl.i"
+	@echo "... function_opengl.s"
+	@echo "... testbench.o"
+	@echo "... testbench.i"
+	@echo "... testbench.s"
 .PHONY : help
 
 

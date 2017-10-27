@@ -57,38 +57,90 @@ include CMakeFiles/luaBlock.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/luaBlock.dir/flags.make
 
-CMakeFiles/luaBlock.dir/main.cpp.o: CMakeFiles/luaBlock.dir/flags.make
-CMakeFiles/luaBlock.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harry/luaBlock/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/luaBlock.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/luaBlock.dir/main.cpp.o -c /home/harry/luaBlock/main.cpp
+CMakeFiles/luaBlock.dir/debug_opengl.cpp.o: CMakeFiles/luaBlock.dir/flags.make
+CMakeFiles/luaBlock.dir/debug_opengl.cpp.o: ../debug_opengl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harry/luaBlock/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/luaBlock.dir/debug_opengl.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/luaBlock.dir/debug_opengl.cpp.o -c /home/harry/luaBlock/debug_opengl.cpp
 
-CMakeFiles/luaBlock.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/luaBlock.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harry/luaBlock/main.cpp > CMakeFiles/luaBlock.dir/main.cpp.i
+CMakeFiles/luaBlock.dir/debug_opengl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/luaBlock.dir/debug_opengl.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harry/luaBlock/debug_opengl.cpp > CMakeFiles/luaBlock.dir/debug_opengl.cpp.i
 
-CMakeFiles/luaBlock.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/luaBlock.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/luaBlock/main.cpp -o CMakeFiles/luaBlock.dir/main.cpp.s
+CMakeFiles/luaBlock.dir/debug_opengl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/luaBlock.dir/debug_opengl.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/luaBlock/debug_opengl.cpp -o CMakeFiles/luaBlock.dir/debug_opengl.cpp.s
 
-CMakeFiles/luaBlock.dir/main.cpp.o.requires:
+CMakeFiles/luaBlock.dir/debug_opengl.cpp.o.requires:
 
-.PHONY : CMakeFiles/luaBlock.dir/main.cpp.o.requires
+.PHONY : CMakeFiles/luaBlock.dir/debug_opengl.cpp.o.requires
 
-CMakeFiles/luaBlock.dir/main.cpp.o.provides: CMakeFiles/luaBlock.dir/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/main.cpp.o.provides.build
-.PHONY : CMakeFiles/luaBlock.dir/main.cpp.o.provides
+CMakeFiles/luaBlock.dir/debug_opengl.cpp.o.provides: CMakeFiles/luaBlock.dir/debug_opengl.cpp.o.requires
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/debug_opengl.cpp.o.provides.build
+.PHONY : CMakeFiles/luaBlock.dir/debug_opengl.cpp.o.provides
 
-CMakeFiles/luaBlock.dir/main.cpp.o.provides.build: CMakeFiles/luaBlock.dir/main.cpp.o
+CMakeFiles/luaBlock.dir/debug_opengl.cpp.o.provides.build: CMakeFiles/luaBlock.dir/debug_opengl.cpp.o
+
+
+CMakeFiles/luaBlock.dir/function_opengl.cpp.o: CMakeFiles/luaBlock.dir/flags.make
+CMakeFiles/luaBlock.dir/function_opengl.cpp.o: ../function_opengl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harry/luaBlock/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/luaBlock.dir/function_opengl.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/luaBlock.dir/function_opengl.cpp.o -c /home/harry/luaBlock/function_opengl.cpp
+
+CMakeFiles/luaBlock.dir/function_opengl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/luaBlock.dir/function_opengl.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harry/luaBlock/function_opengl.cpp > CMakeFiles/luaBlock.dir/function_opengl.cpp.i
+
+CMakeFiles/luaBlock.dir/function_opengl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/luaBlock.dir/function_opengl.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/luaBlock/function_opengl.cpp -o CMakeFiles/luaBlock.dir/function_opengl.cpp.s
+
+CMakeFiles/luaBlock.dir/function_opengl.cpp.o.requires:
+
+.PHONY : CMakeFiles/luaBlock.dir/function_opengl.cpp.o.requires
+
+CMakeFiles/luaBlock.dir/function_opengl.cpp.o.provides: CMakeFiles/luaBlock.dir/function_opengl.cpp.o.requires
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/function_opengl.cpp.o.provides.build
+.PHONY : CMakeFiles/luaBlock.dir/function_opengl.cpp.o.provides
+
+CMakeFiles/luaBlock.dir/function_opengl.cpp.o.provides.build: CMakeFiles/luaBlock.dir/function_opengl.cpp.o
+
+
+CMakeFiles/luaBlock.dir/testbench.cpp.o: CMakeFiles/luaBlock.dir/flags.make
+CMakeFiles/luaBlock.dir/testbench.cpp.o: ../testbench.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harry/luaBlock/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/luaBlock.dir/testbench.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/luaBlock.dir/testbench.cpp.o -c /home/harry/luaBlock/testbench.cpp
+
+CMakeFiles/luaBlock.dir/testbench.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/luaBlock.dir/testbench.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harry/luaBlock/testbench.cpp > CMakeFiles/luaBlock.dir/testbench.cpp.i
+
+CMakeFiles/luaBlock.dir/testbench.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/luaBlock.dir/testbench.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/luaBlock/testbench.cpp -o CMakeFiles/luaBlock.dir/testbench.cpp.s
+
+CMakeFiles/luaBlock.dir/testbench.cpp.o.requires:
+
+.PHONY : CMakeFiles/luaBlock.dir/testbench.cpp.o.requires
+
+CMakeFiles/luaBlock.dir/testbench.cpp.o.provides: CMakeFiles/luaBlock.dir/testbench.cpp.o.requires
+	$(MAKE) -f CMakeFiles/luaBlock.dir/build.make CMakeFiles/luaBlock.dir/testbench.cpp.o.provides.build
+.PHONY : CMakeFiles/luaBlock.dir/testbench.cpp.o.provides
+
+CMakeFiles/luaBlock.dir/testbench.cpp.o.provides.build: CMakeFiles/luaBlock.dir/testbench.cpp.o
 
 
 # Object files for target luaBlock
 luaBlock_OBJECTS = \
-"CMakeFiles/luaBlock.dir/main.cpp.o"
+"CMakeFiles/luaBlock.dir/debug_opengl.cpp.o" \
+"CMakeFiles/luaBlock.dir/function_opengl.cpp.o" \
+"CMakeFiles/luaBlock.dir/testbench.cpp.o"
 
 # External object files for target luaBlock
 luaBlock_EXTERNAL_OBJECTS =
 
-luaBlock: CMakeFiles/luaBlock.dir/main.cpp.o
+luaBlock: CMakeFiles/luaBlock.dir/debug_opengl.cpp.o
+luaBlock: CMakeFiles/luaBlock.dir/function_opengl.cpp.o
+luaBlock: CMakeFiles/luaBlock.dir/testbench.cpp.o
 luaBlock: CMakeFiles/luaBlock.dir/build.make
 luaBlock: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.2.4.9
 luaBlock: /usr/lib/x86_64-linux-gnu/libopencv_ts.so.2.4.9
@@ -100,6 +152,11 @@ luaBlock: /usr/lib/x86_64-linux-gnu/libopencv_contrib.so.2.4.9
 luaBlock: /usr/local/lib/libapriltag.so
 luaBlock: /usr/lib/x86_64-linux-gnu/liblua5.2.so
 luaBlock: /usr/lib/x86_64-linux-gnu/libm.so
+luaBlock: /usr/lib/x86_64-linux-gnu/libGLU.so
+luaBlock: /usr/lib/x86_64-linux-gnu/libGL.so
+luaBlock: /usr/lib/x86_64-linux-gnu/libglut.so
+luaBlock: /usr/lib/x86_64-linux-gnu/libXmu.so
+luaBlock: /usr/lib/x86_64-linux-gnu/libXi.so
 luaBlock: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.2.4.9
 luaBlock: /usr/lib/x86_64-linux-gnu/libopencv_legacy.so.2.4.9
 luaBlock: /usr/lib/x86_64-linux-gnu/libopencv_video.so.2.4.9
@@ -112,7 +169,7 @@ luaBlock: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.2.4.9
 luaBlock: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.2.4.9
 luaBlock: /usr/lib/x86_64-linux-gnu/libopencv_core.so.2.4.9
 luaBlock: CMakeFiles/luaBlock.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/harry/luaBlock/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable luaBlock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/harry/luaBlock/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable luaBlock"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/luaBlock.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -120,7 +177,9 @@ CMakeFiles/luaBlock.dir/build: luaBlock
 
 .PHONY : CMakeFiles/luaBlock.dir/build
 
-CMakeFiles/luaBlock.dir/requires: CMakeFiles/luaBlock.dir/main.cpp.o.requires
+CMakeFiles/luaBlock.dir/requires: CMakeFiles/luaBlock.dir/debug_opengl.cpp.o.requires
+CMakeFiles/luaBlock.dir/requires: CMakeFiles/luaBlock.dir/function_opengl.cpp.o.requires
+CMakeFiles/luaBlock.dir/requires: CMakeFiles/luaBlock.dir/testbench.cpp.o.requires
 
 .PHONY : CMakeFiles/luaBlock.dir/requires
 
