@@ -43,7 +43,10 @@ extern int nTimestamp;
 extern Mat imageRGB, image;
 */
 
-extern double rx,ry,rz,tx,ty,tz;    
+extern int tags_n;
+extern double tags_pos[20][6];
+
+//extern double rx,ry,rz,tx,ty,tz;    
 
 ///////////////////////////////////////////// init step and close //////////////
 int testbench_init(int SystemWeight, int SystemHeight);

@@ -18,7 +18,17 @@ int nTimestamp;
 
 Mat imageRGB, image;
 
-double rx,ry,rz,tx,ty,tz;
+//double rx,ry,rz,tx,ty,tz;
+/*
+struct tagsinfo
+{
+	int n;
+	double pos[20][6];
+} tags;
+*/
+
+int tags_n;
+double tags_pos[20][6];
 
 //////////////////////////////////////////////////////////////////////////////////
 int testbench_init(int SystemWeight, int SystemHeight)
@@ -213,7 +223,7 @@ int testbench_step()
 	/////////////// lua take lua function result ///////////////////////
 		// the result should be the structure of the blocks
 	int n;
-	//double rx,ry,rz,tx,ty,tz;	// made global
+	double rx,ry,rz,tx,ty,tz;	// made global
 	printf("in C\n");
 	if (lua_istable(L,1))
 	{
@@ -221,8 +231,10 @@ int testbench_step()
 		lua_pushstring(L,"n");		//stack 2
 		lua_gettable(L,1);			//stack 2 now is the number n
 		n = (int)luaL_checknumber(L,2);
+		tags_n = n;
 		printf("number: %d\n",n);	//stack 2 now is the number n
 		lua_pop(L,1);				// here goes stack 2
+
 		// get every tags pos
 		for (int i = 0; i < n; i++)
 		{
@@ -260,6 +272,13 @@ int testbench_step()
 					lua_pop(L,1);			// here goes stack 4
 				lua_pop(L,1);			// here goes stack 3
 			lua_pop(L,1);				// goes stack 2
+
+			tags_pos[i][0] = rx;
+			tags_pos[i][1] = ry;
+			tags_pos[i][2] = rz;
+			tags_pos[i][3] = tx;
+			tags_pos[i][4] = ty;
+			tags_pos[i][5] = tz;
 			printf("ros x:%lf\n",rx);
 			printf("ros y:%lf\n",ry);
 			printf("ros z:%lf\n",rz);

@@ -52,8 +52,10 @@ int WindowHeight, WindowWeight;	// the size of window
 int WindowX, WindowY;	// the size of window
 
 		////////////////// navigation  //////////////////////
-float EyeW = 180,EyeTh = 30,EyeL = 2.5;				// all unit mm and degree
-float EyeX = 0,EyeY = 0,EyeZ = 0;					// all unit mm
+//float EyeW = 180,EyeTh = -30,EyeL = 2.5;				// all unit mm and degree
+//float EyeX = 0,EyeY = 0,EyeZ = 0;					// all unit mm
+float EyeW = 0,EyeTh = -90,EyeL = 2.5;				// all unit mm and degree
+float EyeX = 0,EyeY = 0,EyeZ = 2.5;					// all unit mm
 
 float EyeW2 = 180,EyeTh2 = 30,EyeL2 = 2.5;			// all unit mm and degree
 float EyeX2 = 0,EyeY2 = 0,EyeZ2 = 0;						// all unit mm
