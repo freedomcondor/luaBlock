@@ -250,25 +250,72 @@ int main(int n_arg_count, char* ppch_args[])
 		}
 
 		//////////////// call lua function  /////////////////////////////////
-		if (lua_pcall(L,1,1,0) != 0)
+		if (lua_pcall(L,1,1,0) != 0)	// one para, one return
 			{printf("call func fail %s\n",lua_tostring(L,-1)); return -1;}
 
 		/////////////// lua take lua function result ///////////////////////
 			// the result should be the structure of the blocks
+		int n;
+		double rx,ry,rz,tx,ty,tz;
+		printf("in C\n");
 		if (lua_istable(L,1))
 		{
 			//printf("back is table\n");	// stack 1
 			lua_pushstring(L,"n");		//stack 2
-			lua_gettable(L,1);			
-			//printf("number: %lf\n",luaL_checknumber(L,2));	//stack 2 now is the number n
-			//printf("stack: %d\n",lua_gettop(L));
-			lua_pop(L,2);	// clear 2 last in stack
+			lua_gettable(L,1);			//stack 2 now is the number n
+			n = (int)luaL_checknumber(L,2);
+			printf("number: %d\n",n);	//stack 2 now is the number n
+			lua_pop(L,1);				// here goes stack 2
+			// get every tags pos
+			for (int i = 0; i < n; i++)
+			{
+				lua_pushnumber(L,i+1);		//stack 2
+				lua_gettable(L,1);			//stack 2 now is the table of {rota, tran}
+					lua_pushstring(L,"rotation");		//stack 3
+					lua_gettable(L,2);			//stack 3 now is the table{x,y,z}
+						lua_pushstring(L,"x");		//stack 4
+						lua_gettable(L,3);			//stack 4 now is the value
+						rx = lua_tonumber(L,4);
+						lua_pop(L,1);			// here goes stack 4
+						lua_pushstring(L,"y");		//stack 4
+						lua_gettable(L,3);			//stack 4 now is the value
+						ry = lua_tonumber(L,4);
+						lua_pop(L,1);			// here goes stack 4
+						lua_pushstring(L,"z");		//stack 4
+						lua_gettable(L,3);			//stack 4 now is the value
+						rz = lua_tonumber(L,4);
+						lua_pop(L,1);			// here goes stack 4
+					lua_pop(L,1);			// here goes stack 3
+
+					lua_pushstring(L,"translation");		//stack 3
+					lua_gettable(L,2);			//stack 3 now is the table{x,y,z}
+						lua_pushstring(L,"x");		//stack 4
+						lua_gettable(L,3);			//stack 4 now is the value
+						tx = lua_tonumber(L,4);
+						lua_pop(L,1);			// here goes stack 4
+						lua_pushstring(L,"y");		//stack 4
+						lua_gettable(L,3);			//stack 4 now is the value
+						ty = lua_tonumber(L,4);
+						lua_pop(L,1);			// here goes stack 4
+						lua_pushstring(L,"z");		//stack 4
+						lua_gettable(L,3);			//stack 4 now is the value
+						tz = lua_tonumber(L,4);
+						lua_pop(L,1);			// here goes stack 4
+					lua_pop(L,1);			// here goes stack 3
+				lua_pop(L,1);				// goes stack 2
+				printf("ros x:%lf\n",rx);
+				printf("ros y:%lf\n",ry);
+				printf("ros z:%lf\n",rz);
+				printf("tra x:%lf\n",tx);
+				printf("tra y:%lf\n",ty);
+				printf("tra z:%lf\n",tz);
+			}
 		}
 
 		////////////// show image and next frame //////////////////
 		imshow("output", imageRGB);
-		c = waitKey(30);
-		//c = waitKey(0);
+		//c = waitKey(30);
+		c = waitKey(0);
 	}	// end for
 
 	lua_close(L);

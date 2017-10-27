@@ -52,11 +52,13 @@ function func(tagList)
 	--[[
 	print(pos.n)
 	if pos.n ~= 0 then
-		print(pos[1].x)
-		print(pos[1].y)
-		print(pos[1].z)
+		print(pos[1].rotation.x)
 	end
 	--]]
 
 	return pos
+	--[[
+		pos.n
+		pos[1] = {rotation.x/y/z, translation.x/y/z}
+	--]]
 end
