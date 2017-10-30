@@ -41,10 +41,10 @@ function func(tagList)
 	end
 	--]]
 
-	print("tagList got:",tagList.n,"tags")
+	--print("tagList got:",tagList.n,"tags")
 	pos = {n = tagList.n}
 	for i = 1, tagList.n do
-		print("\tfor the",i,"tag")
+		--print("\tfor the",i,"tag")
 
 		pos[i] = calTagPos(tagList[i])
 	end

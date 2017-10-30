@@ -33,7 +33,7 @@ double tags_pos[20][6];
 //////////////////////////////////////////////////////////////////////////////////
 int testbench_init(int SystemWeight, int SystemHeight)
 {
-	printf("init\n");
+	//printf("init\n");
 	L = luaL_newstate();
 	luaL_openlibs(L);
 	//if ((luaL_loadfile(L,"../func.lua")) || (lua_pcall(L,0,0,0)))
@@ -71,7 +71,7 @@ int testbench_step()
 	int x_temp,y_temp;
 	char c;
 
-	printf("step\n");
+	//printf("step\n");
 
 	cin >> strFileName;
 	if(std::cin.good())
@@ -224,7 +224,7 @@ int testbench_step()
 		// the result should be the structure of the blocks
 	int n;
 	double rx,ry,rz,tx,ty,tz;	// made global
-	printf("in C\n");
+	//printf("in C\n");
 	if (lua_istable(L,1))
 	{
 		//printf("back is table\n");	// stack 1
@@ -232,7 +232,7 @@ int testbench_step()
 		lua_gettable(L,1);			//stack 2 now is the number n
 		n = (int)luaL_checknumber(L,2);
 		tags_n = n;
-		printf("number: %d\n",n);	//stack 2 now is the number n
+		//printf("number: %d\n",n);	//stack 2 now is the number n
 		lua_pop(L,1);				// here goes stack 2
 
 		// get every tags pos
@@ -279,12 +279,14 @@ int testbench_step()
 			tags_pos[i][3] = tx;
 			tags_pos[i][4] = ty;
 			tags_pos[i][5] = tz;
+			/*
 			printf("ros x:%lf\n",rx);
 			printf("ros y:%lf\n",ry);
 			printf("ros z:%lf\n",rz);
 			printf("tra x:%lf\n",tx);
 			printf("tra y:%lf\n",ty);
 			printf("tra z:%lf\n",tz);
+			*/
 		}
 	}
 
@@ -298,7 +300,7 @@ int testbench_step()
 
 int testbench_close()
 {
-	printf("close\n");
+	//printf("close\n");
 	lua_close(L);
 	return 0;
 }
